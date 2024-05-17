@@ -1,0 +1,8 @@
+*.pyc
+.venv
+.env
+.git
+__pycache__/
+.pyc
+*.code-workspace
+*.log
