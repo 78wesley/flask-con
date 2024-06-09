@@ -1,4 +1,4 @@
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from flask import Flask
 from flask_crontab import Crontab
 import datetime
@@ -26,10 +26,13 @@ def ensure_crontabs():
     # Ensure the crontabs are added; avoid duplicates by clearing and re-adding.
     os.system(".venv/bin/flask crontab remove")
     os.system(".venv/bin/flask crontab add")
+    if not os.system("/usr/sbin/service cron status > /dev/null") == 0:
+        print("Cron is not running")
+        exit(code=1)
 
 
 def create_app():
-    load_dotenv()
+    # load_dotenv()
     ensure_crontabs()
     crontab.init_app(app)
     return app
